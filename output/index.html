@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Explicando &quot;Predicting the Winner in Two Player StarCraft Games&quot;</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+<body>
+
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Project name</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container"><h1 id="explicando-_predicting-the-winner-in-two-player-starcraft-games_-de-antonio-a.-sánchez-ruiz"><a class="header-link" href="#explicando-_predicting-the-winner-in-two-player-starcraft-games_-de-antonio-a.-sánchez-ruiz"></a>Explicando <em>Predicting the Winner in Two Player StarCraft Games</em> de Antonio A. Sánchez-Ruiz</h1>
+<p>Por <strong>Víctor M. Rivas Santos</strong> para <strong>GeNeura Team</strong>.</p>
+<p><em>Noviembre, 2017</em></p>
+<p><img src="images/portada-articulo-original.png" alt="Portada artículo original">
+<em>Portada artículo original disponible en <a href="http://ceur-ws.org/Vol-1394/paper_3.pdf">http://ceur-ws.org/Vol-1394/paper_3.pdf</a></em></p>
+<h2 id="índice"><a class="header-link" href="#índice"></a>Índice</h2>
+<!--
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+..........................................................................................................................................................
+-->
+<!--
+
+Estilos
+
+-->
+<style>
+@media screen {
+  .markdown-body h1
+  , .markdown-body h2
+  , .markdown-body h3
+  , .markdown-body img
+  , h1, h2, h3, img {
+    margin-top: 5em;
+  }
+}
+
+nav {
+  display: none;
+}
+.markdown-body h3
+, h3 {
+  padding-top: 2em;
+  border-top: 1px solid black;
+}
+
+h3.ejercicio
+, h3.ejercicio+* {
+  border-left: solid 1px green;
+  background-color: rgba( 0,127,0, 0.1);
+  padding-right: 0.2em;
+  padding-bottom: 1em;
+}
+
+h3.ejercicio {
+  margin-bottom: 0em;
+  padding-left: .5em;
+  padding-bottom: .5em;
+  padding-top: 0.2em;
+  border-top-width: 0px;
+}
+
+h3.error
+, h3.error+* {
+  border-left: solid 1px red;
+  background-color: rgba( 127,0, 0, 0.1);
+  padding-right: 0.2em;
+}
+
+h3.error {
+  color: red;
+  margin-bottom: 0em;
+  padding-left: .5em;
+  padding-bottom: .5em;
+  border-top-width: 0px;
+  padding-top: 0.2em;
+
+}
+
+.markdown-body img
+, img {
+  border: 1px solid rgb(0,0,127);
+  padding: 0.2em;
+  text-align: center;
+}
+
+.destacar {
+  font-size: bold;
+  color: rgb( 0, 0, 127);
+}
+
+img {
+  text-align: left;
+  display: block;
+}
+.nav-list{
+  width: 20em;
+  position: relative;
+}
+li.sidebar-header-1,
+li.sidebar-header-1 a,
+li.sidebar-header-2,
+li.sidebar-header-2 a,
+li.sidebar-header-3,
+li.sidebar-header-3 a {
+  width: 20em;
+  height: 1.5em;
+  font-size: 7pt;
+}
+</style>
+
+
+<!--
+
+Funciones en JavaScript
+
+-->
+<script>
+//Tratamiento de imágenes
+// 1. Añado evento onclick
+// 2. Redimensiono al 90% de la página
+var imgs=document.getElementsByTagName( "img" );
+for( var i=0; i<imgs.length; ++i ) {
+  var im=imgs[i];
+  im.onclick=function() { location=this.src; }
+  im.title=imgs[i].alt+ " (Click para aumentar)";
+  im.style="width: 50%; height: 50%; "
+}
+
+// generación del indice
+var msj="";
+var h2=document.getElementsByTagName("h2");
+for( var i=2; i<h2.length; ++i ) {
+  msj+="<p><a href='#"+h2[i].id+"'>"+h2[i].innerText+"</a></p>\n"
+}
+
+var e=document.createElement( "div" );
+e.style="margin-left: 3em;"
+e.innerHTML=msj;
+var i=document.getElementById("1.-introducción")
+i.parentNode.insertBefore(e,i );
+</script>
+  </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
