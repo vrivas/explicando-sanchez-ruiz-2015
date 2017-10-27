@@ -76,7 +76,10 @@ _Noviembre, 2017_
 ### _Machine Learning_ (III): ¿qué características han considerado importantes?
 * Recursos disponibles
 * Número de unidades de cada tipo disponibles
-
+![Estructura de los ficheros de entrenamiento y test](images/filas-de-datos.png)
+*Estructura de los ficheros de entrenamiento y test*
+* 1 seg = 18 frames
+* No se usan ni número de partida ni número de frame.
 
 <!--
 ..........................................................................................................................................................
