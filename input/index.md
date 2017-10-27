@@ -100,6 +100,13 @@ _Noviembre, 2017_
 * R, con los algoritmos de los paquetes _caret_, _MASS_,
 _e1071_, _class_ and _kknn_.
 
+### Experimentación
+* Parámetros de cada algoritmo (hallados usando 10-cvf sobre una amplia variedad de configuraciones):
+![Parámetros de ejecución de cada algoritmo](images/parametros-algoritmo.png)
+*Parámetros de ejecución de cada algoritmo*
+* Precisión de la clasificación (16 ejecuciones usando 80% para _trn_ y 20% para _tst_).
+![Precisión en la clasificación de cada algoritmo](images/accuracy.png)
+*Precisión en la clasificación de cada algoritmo*
 
 <!--
 ..........................................................................................................................................................
