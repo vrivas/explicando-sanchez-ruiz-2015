@@ -107,6 +107,16 @@ _e1071_, _class_ and _kknn_.
 * Precisión de la clasificación (16 ejecuciones usando 80% para _trn_ y 20% para _tst_).
 ![Precisión en la clasificación de cada algoritmo](images/accuracy.png)
 *Precisión en la clasificación de cada algoritmo*
+* _Base_ consiste en asignar la clase usando simplemente el número de partidas ganadas por cada jugador (no tiene en cuenta el estado de cada _trace_).
+* ¿Dónde está la desviación estándar?
+
+### Discusión de resultados
+* Mejor: QDA. 71%. OJO: mismo AI para ambos jugadores; mezcla de _traces_ del minuto 1 con los del minuto 87... **Muy equilibrado**.
+* ¿Qué ocurre si tenemos en cuenta cómo progresan las partidas?
+![Precisión de cada algoritmo conforme progresan las partidas](images/accuracy-vs-time.png)
+*Precisión de cada algoritmo conforme progresan las partidas*
+* ¿Cómo hace la partición de datos? ¿Cuáles usa? ¿Cuáles no?
+
 
 <!--
 ..........................................................................................................................................................
