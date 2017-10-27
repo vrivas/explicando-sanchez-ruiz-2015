@@ -69,17 +69,37 @@ _Noviembre, 2017_
 ### _Machine Learning_ (II): ¿cuántos datos han recopilado?
 * 100 partidas: 50% ganadas por cada jugador
 * Multitud de _traces_ por partida:
-  * 1 cada 5 segundos
+  * 1 _trace_ cada 5 segundos
+  * Cada _trace_ corresponde a un _framework_
+  * 1 seg = 18 frames
   * 730 de media por partida
+  * Pocas partidas rápidas. La mayoría entre 45 y 100 minutos. Media 60.83 minutos.
 * Cada _trace_ es representado por un vector de características etiquetado con el ganador de la partida
 
-### _Machine Learning_ (III): ¿qué características han considerado importantes?
-* Recursos disponibles
-* Número de unidades de cada tipo disponibles
+### _Machine Learning_ (III): ¿alguna primera medida sobre los datos?
+![Valores promediados de cada jugador para 100 partidas](images/recursos-unidades-promedio.png)
+*Valores promediados de cada jugador para 100 partidas*
+
+### _Machine Learning_ (IV): ¿qué características han considerado importantes?
 ![Estructura de los ficheros de entrenamiento y test](images/filas-de-datos.png)
 *Estructura de los ficheros de entrenamiento y test*
-* 1 seg = 18 frames
+* Recursos disponibles
+* Número de unidades de cada tipo disponibles
 * No se usan ni número de partida ni número de frame.
+* Total: 28 características (2 recursos, 15 tipos de tropas, 11 tipos de edificios para _Terrans_)
+
+
+### _Machine Learning_ (V): ¿qué algoritmos han utilizado?
+* _Linear Discriminant Analysis_ (LDA): combinación lineal de características para separar clases; todas las clases con la misma matriz de covarianza.
+* _Quadratic Discriminant Analysis_ (QDA): más flexible pues no asume la igualdad de la matriz de covarianza.
+* _Support Vector Machines_ (SVM): prueban 3 kernels: polinómico (resulta ser el mejor), RBF y lineal.
+* _k-Nearest Neighbour_ (KNN)
+* _Weighted KNN_ (KKNN)
+
+### _Machine Learning_ (VI): ¿cómo han implementado los algoritmos?
+* R, con los algoritmos de los paquetes _caret_, _MASS_,
+_e1071_, _class_ and _kknn_.
+
 
 <!--
 ..........................................................................................................................................................
