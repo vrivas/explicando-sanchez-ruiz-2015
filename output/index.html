@@ -61,7 +61,95 @@
 <p><em>Noviembre, 2017</em></p>
 <p><img src="images/portada-articulo-original.png" alt="Portada artículo original">
 <em>Portada artículo original disponible en <a href="http://ceur-ws.org/Vol-1394/paper_3.pdf">http://ceur-ws.org/Vol-1394/paper_3.pdf</a></em></p>
-<h2 id="índice"><a class="header-link" href="#índice"></a>Índice</h2>
+<h3 id="índice"><a class="header-link" href="#índice"></a>Índice</h3>
+<h3 id="¿de-qué-trata?-(según-el-_abstract_)"><a class="header-link" href="#¿de-qué-trata?-(según-el-_abstract_)"></a>¿De qué trata? (según el <em>abstract</em>)</h3>
+<ol class="list">
+<li>Comparan varios algoritmos de <em>machine learning</em> para predecir el resultado de partidas entre 2 jugadores en StarCraft</li>
+<li>Reflexionan sobre:<ul class="list">
+<li>la representación del estado del juego,</li>
+<li>la bondad de la predicción,</li>
+<li>el tamaño del conjunto de entrenamiento</li>
+<li>y la estabilidad de las predicciones.</li>
+</ul>
+</li>
+</ol>
+<h3 id="¿qué-conclusiones-destacan?"><a class="header-link" href="#¿qué-conclusiones-destacan?"></a>¿Qué conclusiones destacan?</h3>
+<ol class="list">
+<li>Todos los algoritmos se comportan de modo similar, aunque los mejores resultados los obtienen con <em>Linear Discriminant Analysis</em>.</li>
+</ol>
+<h3 id="¿qué-trabajos-futuros-creen-interesantes?"><a class="header-link" href="#¿qué-trabajos-futuros-creen-interesantes?"></a>¿Qué trabajos futuros creen interesantes?</h3>
+<ol class="list">
+<li>Generalizar los resultados usando mapas y bots distintos.</li>
+<li>Más de 2 jugadores.</li>
+<li>Más de 1 raza.</li>
+<li>Considerar otros datos de entrada:<ul class="list">
+<li>Distribución de unidades y edificios en el mapa</li>
+<li>Considerar la evolución del juego, no solo el estado en determinados instantes.</li>
+</ul>
+</li>
+</ol>
+<pre class="hljs"><code><span class="hljs-string">"We think there is a lot of work to do selecting features to train the classiers."</span></code></pre><h3 id="¿qué-aportan-con-respecto-a-otros-autores?"><a class="header-link" href="#¿qué-aportan-con-respecto-a-otros-autores?"></a>¿Qué aportan con respecto a otros autores?</h3>
+<ul class="list">
+<li>No crean bots para ganar, sino bots <strong>observadores</strong> que intentan predecir cuál de los otros bots va a ganar.</li>
+</ul>
+<h3 id="¿por-qué-starcraft?"><a class="header-link" href="#¿por-qué-starcraft?"></a>¿Por qué StarCraft?</h3>
+<ul class="list">
+<li>Un RTS popular:<ul class="list">
+<li>Recolectar recursos</li>
+<li>Desarrollar tecnología</li>
+<li>Construir ejércitos:<ul class="list">
+<li>Elegir entre 3 tipos de razas</li>
+<li>Cada una con distintos tipos de unidades, puntos débiles y fuertes</li>
+</ul>
+</li>
+<li>Derrotar al enemigo</li>
+</ul>
+</li>
+<li>Exige readaptar estrategias dinámicamente<ul class="list">
+<li>Macro: en qué emplear los recursos y cómo usar sus unidades</li>
+<li>Micro: dividir tropas en comandos, posicionarlos, decidir qué habilidades usar de dichas tropas, cuándo hacerlo...</li>
+</ul>
+</li>
+<li>Se pueden crear bots usando el <em>framework</em> <a href="http://bwapi.github.io/">BWAPI</a></li>
+</ul>
+<h3 id="¿qué-restricciones-se-han-impuesto?"><a class="header-link" href="#¿qué-restricciones-se-han-impuesto?"></a>¿Qué restricciones se han impuesto?</h3>
+<ul class="list">
+<li>Solo 1 raza: los <em>Terrans</em></li>
+</ul>
+<h3 id="_machine-learning_-(i):-¿cómo-han-recopilado-los-datos?"><a class="header-link" href="#_machine-learning_-(i):-¿cómo-han-recopilado-los-datos?"></a><em>Machine Learning</em> (I): ¿cómo han recopilado los datos?</h3>
+<ul class="list">
+<li>Crean un bot (BWAPI) que:<ul class="list">
+<li>No tiene unidades y ve todo el mapa</li>
+<li>No interfiere en el juego, solo recopila datos.</li>
+</ul>
+</li>
+<li>Jugando partidas de <em>3</em> jugadores:<ul class="list">
+<li>El bot que actúa como el <em>jugador humano</em> obligatorio</li>
+<li>2 jugadores manejados por la IA del propio juego: <em>Expansion Terran Campaign Insane</em></li>
+</ul>
+</li>
+<li>Han modificado el mapa <em>Baby Steps</em> (solo para 2 jugadores)</li>
+<li>Deshabilitan los disparadores propios del juego de modo que:<ol class="list">
+<li>El bot reinicia el juego en cuanto uno de los 2 jugadores gana</li>
+<li>No tiene en cuenta, por tanto, que las unidades del bot son 0</li>
+</ol>
+</li>
+</ul>
+<h3 id="_machine-learning_-(ii):-¿cuántos-datos-han-recopilado?"><a class="header-link" href="#_machine-learning_-(ii):-¿cuántos-datos-han-recopilado?"></a><em>Machine Learning</em> (II): ¿cuántos datos han recopilado?</h3>
+<ul class="list">
+<li>100 partidas: 50% ganadas por cada jugador</li>
+<li>Multitud de <em>traces</em> por partida:<ul class="list">
+<li>1 cada 5 segundos</li>
+<li>730 de media por partida</li>
+</ul>
+</li>
+<li>Cada <em>trace</em> es representado por un vector de características etiquetado con el ganador de la partida</li>
+</ul>
+<h3 id="_machine-learning_-(iii):-¿qué-características-han-considerado-importantes?"><a class="header-link" href="#_machine-learning_-(iii):-¿qué-características-han-considerado-importantes?"></a><em>Machine Learning</em> (III): ¿qué características han considerado importantes?</h3>
+<ul class="list">
+<li>Recursos disponibles</li>
+<li>Número de unidades de cada tipo disponibles</li>
+</ul>
 <!--
 ..........................................................................................................................................................
 ..........................................................................................................................................................
@@ -156,6 +244,7 @@ li.sidebar-header-3 a {
   height: 1.5em;
   font-size: 7pt;
 }
+
 </style>
 
 

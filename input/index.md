@@ -9,8 +9,73 @@ _Noviembre, 2017_
 ![Portada artículo original](images/portada-articulo-original.png)
 *Portada artículo original disponible en http://ceur-ws.org/Vol-1394/paper_3.pdf*
 
-## Índice
+### Índice
 
+### ¿De qué trata? (según el _abstract_)
+
+1. Comparan varios algoritmos de _machine learning_ para predecir el resultado de partidas entre 2 jugadores en StarCraft
+2. Reflexionan sobre:
+  * la representación del estado del juego,
+  * la bondad de la predicción,
+  * el tamaño del conjunto de entrenamiento
+  * y la estabilidad de las predicciones.
+
+### ¿Qué conclusiones destacan?
+1. Todos los algoritmos se comportan de modo similar, aunque los mejores resultados los obtienen con _Linear Discriminant Analysis_.
+
+### ¿Qué trabajos futuros creen interesantes?
+1. Generalizar los resultados usando mapas y bots distintos.
+1. Más de 2 jugadores.
+1. Más de 1 raza.
+1. Considerar otros datos de entrada:
+  * Distribución de unidades y edificios en el mapa
+  * Considerar la evolución del juego, no solo el estado en determinados instantes.
+
+```js
+"We think there is a lot of work to do selecting features to train the classiers."
+```
+
+### ¿Qué aportan con respecto a otros autores?
+* No crean bots para ganar, sino bots **observadores** que intentan predecir cuál de los otros bots va a ganar.
+
+### ¿Por qué StarCraft?
+* Un RTS popular:
+  * Recolectar recursos
+  * Desarrollar tecnología
+  * Construir ejércitos:
+    * Elegir entre 3 tipos de razas
+    * Cada una con distintos tipos de unidades, puntos débiles y fuertes
+  * Derrotar al enemigo
+* Exige readaptar estrategias dinámicamente
+  * Macro: en qué emplear los recursos y cómo usar sus unidades
+  * Micro: dividir tropas en comandos, posicionarlos, decidir qué habilidades usar de dichas tropas, cuándo hacerlo...
+* Se pueden crear bots usando el _framework_ [BWAPI](http://bwapi.github.io/)
+
+### ¿Qué restricciones se han impuesto?
+* Solo 1 raza: los _Terrans_
+
+### _Machine Learning_ (I): ¿cómo han recopilado los datos?
+* Crean un bot (BWAPI) que:
+  * No tiene unidades y ve todo el mapa
+  * No interfiere en el juego, solo recopila datos.
+* Jugando partidas de *3* jugadores:
+  * El bot que actúa como el _jugador humano_ obligatorio
+  * 2 jugadores manejados por la IA del propio juego: _Expansion Terran Campaign Insane_
+* Han modificado el mapa _Baby Steps_ (solo para 2 jugadores)
+* Deshabilitan los disparadores propios del juego de modo que:
+  1. El bot reinicia el juego en cuanto uno de los 2 jugadores (NO el bot) pierde
+  1. No tiene en cuenta, por tanto, que las unidades del bot son 0
+
+### _Machine Learning_ (II): ¿cuántos datos han recopilado?
+* 100 partidas: 50% ganadas por cada jugador
+* Multitud de _traces_ por partida:
+  * 1 cada 5 segundos
+  * 730 de media por partida
+* Cada _trace_ es representado por un vector de características etiquetado con el ganador de la partida
+
+### _Machine Learning_ (III): ¿qué características han considerado importantes?
+* Recursos disponibles
+* Número de unidades de cada tipo disponibles
 
 
 <!--
@@ -109,6 +174,7 @@ li.sidebar-header-3 a {
   height: 1.5em;
   font-size: 7pt;
 }
+
 </style>
 
 
