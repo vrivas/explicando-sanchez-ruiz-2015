@@ -32,7 +32,7 @@ _Noviembre, 2017_
   * Considerar la evolución del juego, no solo el estado en determinados instantes.
 
 ```js
-"We think there is a lot of work to do selecting features to train the classiers."
+"We think there is a lot of work to do selecting features to train the classifiers."
 ```
 
 ### ¿Qué aportan con respecto a otros autores?
@@ -49,7 +49,7 @@ _Noviembre, 2017_
 * Exige readaptar estrategias dinámicamente
   * Macro: en qué emplear los recursos y cómo usar sus unidades
   * Micro: dividir tropas en comandos, posicionarlos, decidir qué habilidades usar de dichas tropas, cuándo hacerlo...
-* Se pueden crear bots usando el _framework_ [BWAPI](http://bwapi.github.io/)
+* Se pueden crear bots usando el _framework_ [BWAPI](http://bwapi.github.io/) (_...¡claro que sí!_)
 
 ### ¿Qué restricciones se han impuesto?
 * Solo 1 raza: los _Terrans_
@@ -70,8 +70,7 @@ _Noviembre, 2017_
 * 100 partidas: 50% ganadas por cada jugador
 * Multitud de _traces_ por partida:
   * 1 _trace_ cada 5 segundos
-  * Cada _trace_ corresponde a un _framework_
-  * 1 seg = 18 frames
+  * Cada _trace_ corresponde a un _frame_ (1 seg = 18 frames)
   * 730 de media por partida
   * Pocas partidas rápidas. La mayoría entre 45 y 100 minutos. Media 60.83 minutos.
 * Cada _trace_ es representado por un vector de características etiquetado con el ganador de la partida
@@ -102,22 +101,46 @@ _e1071_, _class_ and _kknn_.
 
 ### Experimentación
 * Parámetros de cada algoritmo (hallados usando 10-cvf sobre una amplia variedad de configuraciones):
-![Parámetros de ejecución de cada algoritmo](images/parametros-algoritmo.png)
+![Parámetros de ejecución de cada algoritmo](images/parametros-algoritmos.png)
 *Parámetros de ejecución de cada algoritmo*
 * Precisión de la clasificación (16 ejecuciones usando 80% para _trn_ y 20% para _tst_).
 ![Precisión en la clasificación de cada algoritmo](images/accuracy.png)
 *Precisión en la clasificación de cada algoritmo*
 * _Base_ consiste en asignar la clase usando simplemente el número de partidas ganadas por cada jugador (no tiene en cuenta el estado de cada _trace_).
-* ¿Dónde está la desviación estándar?
+* Pero... ¿Dónde está la desviación estándar?
 
-### Discusión de resultados
+### Resultados: ¿qué algoritmo predice mejor?
 * Mejor: QDA. 71%. OJO: mismo AI para ambos jugadores; mezcla de _traces_ del minuto 1 con los del minuto 87... **Muy equilibrado**.
 * ¿Qué ocurre si tenemos en cuenta cómo progresan las partidas?
 ![Precisión de cada algoritmo conforme progresan las partidas](images/accuracy-vs-time.png)
 *Precisión de cada algoritmo conforme progresan las partidas*
-* ¿Cómo hace la partición de datos? ¿Cuáles usa? ¿Cuáles no?
+* Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?
 
+### Resultados: ¿cuántas partidas realmente harán falta para entrenar cada algoritmo?
+![Precisión de cada algoritmo con respecto al número de partidas](images/accuracy-vs-num-partidas.png)
+*Precisión de cada algoritmo con respecto al número de partidas*
+* Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?
 
+### Resultados: ¿cuán estable es cada algoritmo?
+![Número de partidas en un determinado momento para las que la predicción ya no cambia hasta el final de cada una de ellas](images/estabilidad.png)
+*Número de partidas en un determinado momento para las que la predicción ya no cambia hasta el final de cada una de ellas*
+
+* 20 predicciones para cada partida a intervalos del 5%
+* Por ejemplo, LDA no cambia de parecer a partir de la mitad de la partida.
+
+### Conclusión previa a las conclusiones
+
+```js
+In conclusion, is this domain and using our game state representation, LDA
+seems to be the best classifier. It obtains a level of accuracy over 80% when only 55% the game has been played, it learns faster than the other algorithms from 30 games in the training set, and it is the most stable classier for most part of the game.
+```
+
+### Recmendaciones de bibliografía
+14. Lara-Cabrera, R., Cotta, C., Leiva, A.J.F.: _A review of computational intelligence in RTS games_. In: IEEE Symposium on Foundations of Computational Intelligence,
+FOCI 2013, Singapore, Singapore, April 16-19, 2013. pp. 114{121 (2013)
+15. Ontañon, S., Synnaeve, G., Uriarte, A., Richoux, F., Churchill, D., Preuss, M.: _A Survey of Real-Time Strategy Game AI Research and Competition in StarCraft_.
+
+### Víctor Manuel Rivas, para Geneura Team
 <!--
 ..........................................................................................................................................................
 ..........................................................................................................................................................

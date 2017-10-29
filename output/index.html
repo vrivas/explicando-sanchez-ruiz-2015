@@ -88,7 +88,7 @@
 </ul>
 </li>
 </ol>
-<pre class="hljs"><code><span class="hljs-string">"We think there is a lot of work to do selecting features to train the classiers."</span></code></pre><h3 id="¿qué-aportan-con-respecto-a-otros-autores?"><a class="header-link" href="#¿qué-aportan-con-respecto-a-otros-autores?"></a>¿Qué aportan con respecto a otros autores?</h3>
+<pre class="hljs"><code><span class="hljs-string">"We think there is a lot of work to do selecting features to train the classifiers."</span></code></pre><h3 id="¿qué-aportan-con-respecto-a-otros-autores?"><a class="header-link" href="#¿qué-aportan-con-respecto-a-otros-autores?"></a>¿Qué aportan con respecto a otros autores?</h3>
 <ul class="list">
 <li>No crean bots para ganar, sino bots <strong>observadores</strong> que intentan predecir cuál de los otros bots va a ganar.</li>
 </ul>
@@ -110,7 +110,7 @@
 <li>Micro: dividir tropas en comandos, posicionarlos, decidir qué habilidades usar de dichas tropas, cuándo hacerlo...</li>
 </ul>
 </li>
-<li>Se pueden crear bots usando el <em>framework</em> <a href="http://bwapi.github.io/">BWAPI</a></li>
+<li>Se pueden crear bots usando el <em>framework</em> <a href="http://bwapi.github.io/">BWAPI</a> (<em>...¡claro que sí!</em>)</li>
 </ul>
 <h3 id="¿qué-restricciones-se-han-impuesto?"><a class="header-link" href="#¿qué-restricciones-se-han-impuesto?"></a>¿Qué restricciones se han impuesto?</h3>
 <ul class="list">
@@ -130,7 +130,7 @@
 </li>
 <li>Han modificado el mapa <em>Baby Steps</em> (solo para 2 jugadores)</li>
 <li>Deshabilitan los disparadores propios del juego de modo que:<ol class="list">
-<li>El bot reinicia el juego en cuanto uno de los 2 jugadores gana</li>
+<li>El bot reinicia el juego en cuanto uno de los 2 jugadores (NO el bot) pierde</li>
 <li>No tiene en cuenta, por tanto, que las unidades del bot son 0</li>
 </ol>
 </li>
@@ -139,17 +139,80 @@
 <ul class="list">
 <li>100 partidas: 50% ganadas por cada jugador</li>
 <li>Multitud de <em>traces</em> por partida:<ul class="list">
-<li>1 cada 5 segundos</li>
+<li>1 <em>trace</em> cada 5 segundos</li>
+<li>Cada <em>trace</em> corresponde a un <em>frame</em> (1 seg = 18 frames)</li>
 <li>730 de media por partida</li>
+<li>Pocas partidas rápidas. La mayoría entre 45 y 100 minutos. Media 60.83 minutos.</li>
 </ul>
 </li>
 <li>Cada <em>trace</em> es representado por un vector de características etiquetado con el ganador de la partida</li>
 </ul>
-<h3 id="_machine-learning_-(iii):-¿qué-características-han-considerado-importantes?"><a class="header-link" href="#_machine-learning_-(iii):-¿qué-características-han-considerado-importantes?"></a><em>Machine Learning</em> (III): ¿qué características han considerado importantes?</h3>
+<h3 id="_machine-learning_-(iii):-¿alguna-primera-medida-sobre-los-datos?"><a class="header-link" href="#_machine-learning_-(iii):-¿alguna-primera-medida-sobre-los-datos?"></a><em>Machine Learning</em> (III): ¿alguna primera medida sobre los datos?</h3>
+<p><img src="images/recursos-unidades-promedio.png" alt="Valores promediados de cada jugador para 100 partidas">
+<em>Valores promediados de cada jugador para 100 partidas</em></p>
+<h3 id="_machine-learning_-(iv):-¿qué-características-han-considerado-importantes?"><a class="header-link" href="#_machine-learning_-(iv):-¿qué-características-han-considerado-importantes?"></a><em>Machine Learning</em> (IV): ¿qué características han considerado importantes?</h3>
+<p><img src="images/filas-de-datos.png" alt="Estructura de los ficheros de entrenamiento y test">
+<em>Estructura de los ficheros de entrenamiento y test</em></p>
 <ul class="list">
 <li>Recursos disponibles</li>
 <li>Número de unidades de cada tipo disponibles</li>
+<li>No se usan ni número de partida ni número de frame.</li>
+<li>Total: 28 características (2 recursos, 15 tipos de tropas, 11 tipos de edificios para <em>Terrans</em>)</li>
 </ul>
+<h3 id="_machine-learning_-(v):-¿qué-algoritmos-han-utilizado?"><a class="header-link" href="#_machine-learning_-(v):-¿qué-algoritmos-han-utilizado?"></a><em>Machine Learning</em> (V): ¿qué algoritmos han utilizado?</h3>
+<ul class="list">
+<li><em>Linear Discriminant Analysis</em> (LDA): combinación lineal de características para separar clases; todas las clases con la misma matriz de covarianza.</li>
+<li><em>Quadratic Discriminant Analysis</em> (QDA): más flexible pues no asume la igualdad de la matriz de covarianza.</li>
+<li><em>Support Vector Machines</em> (SVM): prueban 3 kernels: polinómico (resulta ser el mejor), RBF y lineal.</li>
+<li><em>k-Nearest Neighbour</em> (KNN)</li>
+<li><em>Weighted KNN</em> (KKNN)</li>
+</ul>
+<h3 id="_machine-learning_-(vi):-¿cómo-han-implementado-los-algoritmos?"><a class="header-link" href="#_machine-learning_-(vi):-¿cómo-han-implementado-los-algoritmos?"></a><em>Machine Learning</em> (VI): ¿cómo han implementado los algoritmos?</h3>
+<ul class="list">
+<li>R, con los algoritmos de los paquetes <em>caret</em>, <em>MASS</em>,
+<em>e1071</em>, <em>class</em> and <em>kknn</em>.</li>
+</ul>
+<h3 id="experimentación"><a class="header-link" href="#experimentación"></a>Experimentación</h3>
+<ul class="list">
+<li>Parámetros de cada algoritmo (hallados usando 10-cvf sobre una amplia variedad de configuraciones):
+<img src="images/parametros-algoritmos.png" alt="Parámetros de ejecución de cada algoritmo">
+<em>Parámetros de ejecución de cada algoritmo</em></li>
+<li>Precisión de la clasificación (16 ejecuciones usando 80% para <em>trn</em> y 20% para <em>tst</em>).
+<img src="images/accuracy.png" alt="Precisión en la clasificación de cada algoritmo">
+<em>Precisión en la clasificación de cada algoritmo</em></li>
+<li><em>Base</em> consiste en asignar la clase usando simplemente el número de partidas ganadas por cada jugador (no tiene en cuenta el estado de cada <em>trace</em>).</li>
+<li>Pero... ¿Dónde está la desviación estándar?</li>
+</ul>
+<h3 id="resultados:-¿qué-algoritmo-predice-mejor?"><a class="header-link" href="#resultados:-¿qué-algoritmo-predice-mejor?"></a>Resultados: ¿qué algoritmo predice mejor?</h3>
+<ul class="list">
+<li>Mejor: QDA. 71%. OJO: mismo AI para ambos jugadores; mezcla de <em>traces</em> del minuto 1 con los del minuto 87... <strong>Muy equilibrado</strong>.</li>
+<li>¿Qué ocurre si tenemos en cuenta cómo progresan las partidas?
+<img src="images/accuracy-vs-time.png" alt="Precisión de cada algoritmo conforme progresan las partidas">
+<em>Precisión de cada algoritmo conforme progresan las partidas</em></li>
+<li>Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?</li>
+</ul>
+<h3 id="resultados:-¿cuántas-partidas-realmente-harán-falta-para-entrenar-cada-algoritmo?"><a class="header-link" href="#resultados:-¿cuántas-partidas-realmente-harán-falta-para-entrenar-cada-algoritmo?"></a>Resultados: ¿cuántas partidas realmente harán falta para entrenar cada algoritmo?</h3>
+<p><img src="images/accuracy-vs-num-partidas.png" alt="Precisión de cada algoritmo con respecto al número de partidas">
+<em>Precisión de cada algoritmo con respecto al número de partidas</em></p>
+<ul class="list">
+<li>Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?</li>
+</ul>
+<h3 id="resultados:-¿cuán-estable-es-cada-algoritmo?"><a class="header-link" href="#resultados:-¿cuán-estable-es-cada-algoritmo?"></a>Resultados: ¿cuán estable es cada algoritmo?</h3>
+<p><img src="images/estabilidad.png" alt="Número de partidas en un determinado momento para las que la predicción ya no cambia hasta el final de cada una de ellas">
+<em>Número de partidas en un determinado momento para las que la predicción ya no cambia hasta el final de cada una de ellas</em></p>
+<ul class="list">
+<li>20 predicciones para cada partida a intervalos del 5%</li>
+<li>Por ejemplo, LDA no cambia de parecer a partir de la mitad de la partida.</li>
+</ul>
+<h3 id="conclusión-previa-a-las-conclusiones"><a class="header-link" href="#conclusión-previa-a-las-conclusiones"></a>Conclusión previa a las conclusiones</h3>
+<pre class="hljs"><code>In conclusion, is <span class="hljs-keyword">this</span> domain and using our game state representation, LDA
+seems to be the best classifier. It obtains a level <span class="hljs-keyword">of</span> accuracy over <span class="hljs-number">80</span>% when only <span class="hljs-number">55</span>% the game has been played, it learns faster than the other algorithms <span class="hljs-keyword">from</span> <span class="hljs-number">30</span> games <span class="hljs-keyword">in</span> the training set, and it is the most stable classier <span class="hljs-keyword">for</span> most part <span class="hljs-keyword">of</span> the game.</code></pre><h3 id="recmendaciones-de-bibliografía"><a class="header-link" href="#recmendaciones-de-bibliografía"></a>Recmendaciones de bibliografía</h3>
+<ol class="list">
+<li>Lara-Cabrera, R., Cotta, C., Leiva, A.J.F.: <em>A review of computational intelligence in RTS games</em>. In: IEEE Symposium on Foundations of Computational Intelligence,
+FOCI 2013, Singapore, Singapore, April 16-19, 2013. pp. 114{121 (2013)</li>
+<li>Ontañon, S., Synnaeve, G., Uriarte, A., Richoux, F., Churchill, D., Preuss, M.: <em>A Survey of Real-Time Strategy Game AI Research and Competition in StarCraft</em>.</li>
+</ol>
+<h3 id="víctor-manuel-rivas,-para-geneura-team"><a class="header-link" href="#víctor-manuel-rivas,-para-geneura-team"></a>Víctor Manuel Rivas, para Geneura Team</h3>
 <!--
 ..........................................................................................................................................................
 ..........................................................................................................................................................
