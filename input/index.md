@@ -264,8 +264,8 @@ html {
 }
 body {
   background-color: #fff;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 2%;
   margin-bottom: 2%;
 }
