@@ -2,7 +2,7 @@
 #export layout=mixu-book
 #export layout=github
 export layout=bootstrap3
-#export layout=jasonm23-swiss
+export layout=jasonm23-swiss
 #export layout=markedapp-byword
 
 generate-md --layout $layout --input ./input --output ./output

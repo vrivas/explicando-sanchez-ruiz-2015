@@ -1,70 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Explicando &quot;Predicting the Winner in Two Player StarCraft Games&quot;</title>
-    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
-    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="assets/style.css" />
+    <link type="text/css" rel="stylesheet" href="assets/pilcrow.css" />
+    <link type="text/css" rel="stylesheet" href="assets/hljs-github.min.css"/>
   </head>
-<body>
-
-  <nav class="navbar navbar-default" role="navigation">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Project name</a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="active"><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-              <li class="divider"></li>
-              <li><a href="#">One more separated link</a></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li class="divider"></li>
-              <li><a href="#">Separated link</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container"><h1 id="explicando-_predicting-the-winner-in-two-player-starcraft-games_-de-antonio-a.-sánchez-ruiz"><a class="header-link" href="#explicando-_predicting-the-winner-in-two-player-starcraft-games_-de-antonio-a.-sánchez-ruiz"></a>Explicando <em>Predicting the Winner in Two Player StarCraft Games</em> de Antonio A. Sánchez-Ruiz</h1>
-<p>Por <strong>Víctor M. Rivas Santos</strong> para <strong>GeNeura Team</strong>.</p>
-<p><em>Noviembre, 2017</em></p>
+<body><h1 id="explicando-_predicting-the-winner-in-two-player-starcraft-games_"><a class="header-link" href="#explicando-_predicting-the-winner-in-two-player-starcraft-games_"></a>Explicando <em>Predicting the Winner in Two Player StarCraft Games</em></h1>
+<ul class="list">
+<li>Este artículo fue publicado en <a href="http://dblp.uni-trier.de/db/conf/cosecivi/cosecivi2015">CoSECiVi’15</a> siendo su autor <a href="http://gaia.fdi.ucm.es/people/antonio">Antonio A. Sanchez-Ruiz</a></li>
+<li>Esta presentación ha sido realizada por <a href="http://vrivas.es"><strong>Víctor M. Rivas Santos</strong></a> para <a href="http://geneura.ugr.es"><strong>GeNeura Team</strong></a> en Octubre, 2017</li>
+</ul>
 <p><img src="images/portada-articulo-original.png" alt="Portada artículo original">
 <em>Portada artículo original disponible en <a href="http://ceur-ws.org/Vol-1394/paper_3.pdf">http://ceur-ws.org/Vol-1394/paper_3.pdf</a></em></p>
-<h3 id="índice"><a class="header-link" href="#índice"></a>Índice</h3>
 <h3 id="¿de-qué-trata?-(según-el-_abstract_)"><a class="header-link" href="#¿de-qué-trata?-(según-el-_abstract_)"></a>¿De qué trata? (según el <em>abstract</em>)</h3>
 <ol class="list">
-<li>Comparan varios algoritmos de <em>machine learning</em> para predecir el resultado de partidas entre 2 jugadores en StarCraft</li>
+<li>Comparar algoritmos  <em>machine learning</em> para predecir el resultado de partidas en StarCraft</li>
 <li>Reflexionan sobre:<ul class="list">
 <li>la representación del estado del juego,</li>
 <li>la bondad de la predicción,</li>
@@ -75,20 +28,21 @@
 </ol>
 <h3 id="¿qué-conclusiones-destacan?"><a class="header-link" href="#¿qué-conclusiones-destacan?"></a>¿Qué conclusiones destacan?</h3>
 <ol class="list">
-<li>Todos los algoritmos se comportan de modo similar, aunque los mejores resultados los obtienen con <em>Linear Discriminant Analysis</em>.</li>
+<li>Comportamiento muy similar, mejores resultados con <em>Linear Discriminant Analysis</em>.</li>
 </ol>
 <h3 id="¿qué-trabajos-futuros-creen-interesantes?"><a class="header-link" href="#¿qué-trabajos-futuros-creen-interesantes?"></a>¿Qué trabajos futuros creen interesantes?</h3>
 <ol class="list">
-<li>Generalizar los resultados usando mapas y bots distintos.</li>
+<li>Mapas y bots distintos.</li>
 <li>Más de 2 jugadores.</li>
 <li>Más de 1 raza.</li>
-<li>Considerar otros datos de entrada:<ul class="list">
+<li>Otros datos de entrada:<ul class="list">
 <li>Distribución de unidades y edificios en el mapa</li>
-<li>Considerar la evolución del juego, no solo el estado en determinados instantes.</li>
+<li>Evolución del juego, no solo el estado en determinados instantes.</li>
 </ul>
 </li>
 </ol>
-<pre class="hljs"><code><span class="hljs-string">"We think there is a lot of work to do selecting features to train the classifiers."</span></code></pre><h3 id="¿qué-aportan-con-respecto-a-otros-autores?"><a class="header-link" href="#¿qué-aportan-con-respecto-a-otros-autores?"></a>¿Qué aportan con respecto a otros autores?</h3>
+<pre class="hljs"><code><span class="hljs-string">"We think there is a lot of work to do selecting
+features to train the classifiers."</span></code></pre><h3 id="¿qué-aportan-con-respecto-a-otros-autores?"><a class="header-link" href="#¿qué-aportan-con-respecto-a-otros-autores?"></a>¿Qué aportan con respecto a otros autores?</h3>
 <ul class="list">
 <li>No crean bots para ganar, sino bots <strong>observadores</strong> que intentan predecir cuál de los otros bots va a ganar.</li>
 </ul>
@@ -119,17 +73,17 @@
 <h3 id="_machine-learning_-(i):-¿cómo-han-recopilado-los-datos?"><a class="header-link" href="#_machine-learning_-(i):-¿cómo-han-recopilado-los-datos?"></a><em>Machine Learning</em> (I): ¿cómo han recopilado los datos?</h3>
 <ul class="list">
 <li>Crean un bot (BWAPI) que:<ul class="list">
-<li>No tiene unidades y ve todo el mapa</li>
-<li>No interfiere en el juego, solo recopila datos.</li>
+<li>0 unidades y ve todo el mapa</li>
+<li>No interfiere, solo recopila datos.</li>
 </ul>
 </li>
 <li>Jugando partidas de <em>3</em> jugadores:<ul class="list">
-<li>El bot que actúa como el <em>jugador humano</em> obligatorio</li>
+<li>El bot es el <em>jugador humano</em> obligatorio</li>
 <li>2 jugadores manejados por la IA del propio juego: <em>Expansion Terran Campaign Insane</em></li>
 </ul>
 </li>
-<li>Han modificado el mapa <em>Baby Steps</em> (solo para 2 jugadores)</li>
-<li>Deshabilitan los disparadores propios del juego de modo que:<ol class="list">
+<li>Modificando el mapa <em>Baby Steps</em> (solo para 2 jugadores)</li>
+<li>Deshabilitan los disparadores propios del juego, así:<ol class="list">
 <li>El bot reinicia el juego en cuanto uno de los 2 jugadores (NO el bot) pierde</li>
 <li>No tiene en cuenta, por tanto, que las unidades del bot son 0</li>
 </ol>
@@ -174,21 +128,27 @@
 </ul>
 <h3 id="experimentación"><a class="header-link" href="#experimentación"></a>Experimentación</h3>
 <ul class="list">
-<li>Parámetros de cada algoritmo (hallados usando 10-cvf sobre una amplia variedad de configuraciones):
-<img src="images/parametros-algoritmos.png" alt="Parámetros de ejecución de cada algoritmo">
-<em>Parámetros de ejecución de cada algoritmo</em></li>
-<li>Precisión de la clasificación (16 ejecuciones usando 80% para <em>trn</em> y 20% para <em>tst</em>).
-<img src="images/accuracy.png" alt="Precisión en la clasificación de cada algoritmo">
-<em>Precisión en la clasificación de cada algoritmo</em></li>
+<li>Parámetros de cada algoritmo (hallados usando 10-cvf sobre una amplia variedad de configuraciones):</li>
+</ul>
+<p><img src="images/parametros-algoritmos.png" alt="Parámetros de ejecución de cada algoritmo">
+<em>Parámetros de ejecución de cada algoritmo</em></p>
+<ul class="list">
+<li>Precisión de la clasificación (16 ejecuciones usando 80% para <em>trn</em> y 20% para <em>tst</em>).</li>
+</ul>
+<p><img src="images/accuracy.png" alt="Precisión en la clasificación de cada algoritmo">
+<em>Precisión en la clasificación de cada algoritmo</em></p>
+<ul class="list">
 <li><em>Base</em> consiste en asignar la clase usando simplemente el número de partidas ganadas por cada jugador (no tiene en cuenta el estado de cada <em>trace</em>).</li>
 <li>Pero... ¿Dónde está la desviación estándar?</li>
 </ul>
 <h3 id="resultados:-¿qué-algoritmo-predice-mejor?"><a class="header-link" href="#resultados:-¿qué-algoritmo-predice-mejor?"></a>Resultados: ¿qué algoritmo predice mejor?</h3>
 <ul class="list">
 <li>Mejor: QDA. 71%. OJO: mismo AI para ambos jugadores; mezcla de <em>traces</em> del minuto 1 con los del minuto 87... <strong>Muy equilibrado</strong>.</li>
-<li>¿Qué ocurre si tenemos en cuenta cómo progresan las partidas?
-<img src="images/accuracy-vs-time.png" alt="Precisión de cada algoritmo conforme progresan las partidas">
-<em>Precisión de cada algoritmo conforme progresan las partidas</em></li>
+<li>¿Qué ocurre si tenemos en cuenta cómo progresan las partidas?</li>
+</ul>
+<p><img src="images/accuracy-vs-time.png" alt="Precisión de cada algoritmo conforme progresan las partidas">
+<em>Precisión de cada algoritmo conforme progresan las partidas</em></p>
+<ul class="list">
 <li>Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?</li>
 </ul>
 <h3 id="resultados:-¿cuántas-partidas-realmente-harán-falta-para-entrenar-cada-algoritmo?"><a class="header-link" href="#resultados:-¿cuántas-partidas-realmente-harán-falta-para-entrenar-cada-algoritmo?"></a>Resultados: ¿cuántas partidas realmente harán falta para entrenar cada algoritmo?</h3>
@@ -205,8 +165,11 @@
 <li>Por ejemplo, LDA no cambia de parecer a partir de la mitad de la partida.</li>
 </ul>
 <h3 id="conclusión-previa-a-las-conclusiones"><a class="header-link" href="#conclusión-previa-a-las-conclusiones"></a>Conclusión previa a las conclusiones</h3>
-<pre class="hljs"><code>In conclusion, is <span class="hljs-keyword">this</span> domain and using our game state representation, LDA
-seems to be the best classifier. It obtains a level <span class="hljs-keyword">of</span> accuracy over <span class="hljs-number">80</span>% when only <span class="hljs-number">55</span>% the game has been played, it learns faster than the other algorithms <span class="hljs-keyword">from</span> <span class="hljs-number">30</span> games <span class="hljs-keyword">in</span> the training set, and it is the most stable classier <span class="hljs-keyword">for</span> most part <span class="hljs-keyword">of</span> the game.</code></pre><h3 id="recmendaciones-de-bibliografía"><a class="header-link" href="#recmendaciones-de-bibliografía"></a>Recmendaciones de bibliografía</h3>
+<pre class="hljs"><code>In conclusion, is <span class="hljs-keyword">this</span> domain and using our game state representation,
+LDA seems to be the best classifier. It obtains a level <span class="hljs-keyword">of</span> accuracy
+over <span class="hljs-number">80</span>% when only <span class="hljs-number">55</span>% the game has been played, it learns faster than
+the other algorithms <span class="hljs-keyword">from</span> <span class="hljs-number">30</span> games <span class="hljs-keyword">in</span> the training set, and it is the
+most stable classier <span class="hljs-keyword">for</span> most part <span class="hljs-keyword">of</span> the game.</code></pre><h3 id="recmendaciones-de-bibliografía"><a class="header-link" href="#recmendaciones-de-bibliografía"></a>Recmendaciones de bibliografía</h3>
 <ol class="list">
 <li>Lara-Cabrera, R., Cotta, C., Leiva, A.J.F.: <em>A review of computational intelligence in RTS games</em>. In: IEEE Symposium on Foundations of Computational Intelligence,
 FOCI 2013, Singapore, Singapore, April 16-19, 2013. pp. 114{121 (2013)</li>
@@ -235,6 +198,9 @@ Estilos
   }
 }
 
+h1 {
+  text-align: center;
+}
 nav {
   display: none;
 }
@@ -290,8 +256,16 @@ h3.error {
 }
 
 img {
-  text-align: left;
+  text-align: center;
+  margin: 0 auto 0 auto;
   display: block;
+  width: 85%;
+}
+p{
+ text-align: center;
+}
+img + em {
+  font-size: 75%;
 }
 .nav-list{
   width: 20em;
@@ -308,6 +282,16 @@ li.sidebar-header-3 a {
   font-size: 7pt;
 }
 
+html {
+  background-color: #aaa;
+}
+body {
+  background-color: #fff;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
 </style>
 
 
@@ -325,9 +309,10 @@ for( var i=0; i<imgs.length; ++i ) {
   var im=imgs[i];
   im.onclick=function() { location=this.src; }
   im.title=imgs[i].alt+ " (Click para aumentar)";
-  im.style="width: 50%; height: 50%; "
+  //im.style="width: 50%; height: 50%; "
 }
 
+/*
 // generación del indice
 var msj="";
 var h2=document.getElementsByTagName("h2");
@@ -340,10 +325,7 @@ e.style="margin-left: 3em;"
 e.innerHTML=msj;
 var i=document.getElementById("1.-introducción")
 i.parentNode.insertBefore(e,i );
+*/
 </script>
-  </div>
-
-  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,19 +1,17 @@
 title: Explicando "Predicting the Winner in Two Player StarCraft Games"
 -----
-# Explicando _Predicting the Winner in Two Player StarCraft Games_ de Antonio A. Sánchez-Ruiz
-Por **Víctor M. Rivas Santos** para **GeNeura Team**.
-
-_Noviembre, 2017_
+# Explicando _Predicting the Winner in Two Player StarCraft Games_
+* Este artículo fue publicado en [CoSECiVi’15](http://dblp.uni-trier.de/db/conf/cosecivi/cosecivi2015) siendo su autor [Antonio A. Sanchez-Ruiz](http://gaia.fdi.ucm.es/people/antonio)
+* Esta presentación ha sido realizada por [**Víctor M. Rivas Santos**](http://vrivas.es) para [**GeNeura Team**](http://geneura.ugr.es) en Octubre, 2017
 
 
 ![Portada artículo original](images/portada-articulo-original.png)
 *Portada artículo original disponible en http://ceur-ws.org/Vol-1394/paper_3.pdf*
 
-### Índice
 
 ### ¿De qué trata? (según el _abstract_)
 
-1. Comparan varios algoritmos de _machine learning_ para predecir el resultado de partidas entre 2 jugadores en StarCraft
+1. Comparar algoritmos  _machine learning_ para predecir el resultado de partidas en StarCraft
 2. Reflexionan sobre:
   * la representación del estado del juego,
   * la bondad de la predicción,
@@ -21,18 +19,19 @@ _Noviembre, 2017_
   * y la estabilidad de las predicciones.
 
 ### ¿Qué conclusiones destacan?
-1. Todos los algoritmos se comportan de modo similar, aunque los mejores resultados los obtienen con _Linear Discriminant Analysis_.
+1. Comportamiento muy similar, mejores resultados con _Linear Discriminant Analysis_.
 
 ### ¿Qué trabajos futuros creen interesantes?
-1. Generalizar los resultados usando mapas y bots distintos.
+1. Mapas y bots distintos.
 1. Más de 2 jugadores.
 1. Más de 1 raza.
-1. Considerar otros datos de entrada:
+1. Otros datos de entrada:
   * Distribución de unidades y edificios en el mapa
-  * Considerar la evolución del juego, no solo el estado en determinados instantes.
+  * Evolución del juego, no solo el estado en determinados instantes.
 
 ```js
-"We think there is a lot of work to do selecting features to train the classifiers."
+"We think there is a lot of work to do selecting
+features to train the classifiers."
 ```
 
 ### ¿Qué aportan con respecto a otros autores?
@@ -56,13 +55,13 @@ _Noviembre, 2017_
 
 ### _Machine Learning_ (I): ¿cómo han recopilado los datos?
 * Crean un bot (BWAPI) que:
-  * No tiene unidades y ve todo el mapa
-  * No interfiere en el juego, solo recopila datos.
+  * 0 unidades y ve todo el mapa
+  * No interfiere, solo recopila datos.
 * Jugando partidas de *3* jugadores:
-  * El bot que actúa como el _jugador humano_ obligatorio
+  * El bot es el _jugador humano_ obligatorio
   * 2 jugadores manejados por la IA del propio juego: _Expansion Terran Campaign Insane_
-* Han modificado el mapa _Baby Steps_ (solo para 2 jugadores)
-* Deshabilitan los disparadores propios del juego de modo que:
+* Modificando el mapa _Baby Steps_ (solo para 2 jugadores)
+* Deshabilitan los disparadores propios del juego, así:
   1. El bot reinicia el juego en cuanto uno de los 2 jugadores (NO el bot) pierde
   1. No tiene en cuenta, por tanto, que las unidades del bot son 0
 
@@ -101,24 +100,32 @@ _e1071_, _class_ and _kknn_.
 
 ### Experimentación
 * Parámetros de cada algoritmo (hallados usando 10-cvf sobre una amplia variedad de configuraciones):
+
 ![Parámetros de ejecución de cada algoritmo](images/parametros-algoritmos.png)
 *Parámetros de ejecución de cada algoritmo*
+
 * Precisión de la clasificación (16 ejecuciones usando 80% para _trn_ y 20% para _tst_).
+
 ![Precisión en la clasificación de cada algoritmo](images/accuracy.png)
 *Precisión en la clasificación de cada algoritmo*
+
 * _Base_ consiste en asignar la clase usando simplemente el número de partidas ganadas por cada jugador (no tiene en cuenta el estado de cada _trace_).
 * Pero... ¿Dónde está la desviación estándar?
 
 ### Resultados: ¿qué algoritmo predice mejor?
 * Mejor: QDA. 71%. OJO: mismo AI para ambos jugadores; mezcla de _traces_ del minuto 1 con los del minuto 87... **Muy equilibrado**.
 * ¿Qué ocurre si tenemos en cuenta cómo progresan las partidas?
+
 ![Precisión de cada algoritmo conforme progresan las partidas](images/accuracy-vs-time.png)
 *Precisión de cada algoritmo conforme progresan las partidas*
+
 * Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?
 
 ### Resultados: ¿cuántas partidas realmente harán falta para entrenar cada algoritmo?
+
 ![Precisión de cada algoritmo con respecto al número de partidas](images/accuracy-vs-num-partidas.png)
 *Precisión de cada algoritmo con respecto al número de partidas*
+
 * Pero... ¿cómo hace la partición de datos? ¿cuáles usa? ¿cuáles no?
 
 ### Resultados: ¿cuán estable es cada algoritmo?
@@ -131,8 +138,11 @@ _e1071_, _class_ and _kknn_.
 ### Conclusión previa a las conclusiones
 
 ```js
-In conclusion, is this domain and using our game state representation, LDA
-seems to be the best classifier. It obtains a level of accuracy over 80% when only 55% the game has been played, it learns faster than the other algorithms from 30 games in the training set, and it is the most stable classier for most part of the game.
+In conclusion, is this domain and using our game state representation,
+LDA seems to be the best classifier. It obtains a level of accuracy
+over 80% when only 55% the game has been played, it learns faster than
+the other algorithms from 30 games in the training set, and it is the
+most stable classier for most part of the game.
 ```
 
 ### Recmendaciones de bibliografía
@@ -165,6 +175,9 @@ Estilos
   }
 }
 
+h1 {
+  text-align: center;
+}
 nav {
   display: none;
 }
@@ -220,8 +233,16 @@ h3.error {
 }
 
 img {
-  text-align: left;
+  text-align: center;
+  margin: 0 auto 0 auto;
   display: block;
+  width: 85%;
+}
+p{
+ text-align: center;
+}
+img + em {
+  font-size: 75%;
 }
 .nav-list{
   width: 20em;
@@ -238,6 +259,16 @@ li.sidebar-header-3 a {
   font-size: 7pt;
 }
 
+html {
+  background-color: #aaa;
+}
+body {
+  background-color: #fff;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
 </style>
 
 
@@ -255,9 +286,10 @@ for( var i=0; i<imgs.length; ++i ) {
   var im=imgs[i];
   im.onclick=function() { location=this.src; }
   im.title=imgs[i].alt+ " (Click para aumentar)";
-  im.style="width: 50%; height: 50%; "
+  //im.style="width: 50%; height: 50%; "
 }
 
+/*
 // generación del indice
 var msj="";
 var h2=document.getElementsByTagName("h2");
@@ -270,4 +302,5 @@ e.style="margin-left: 3em;"
 e.innerHTML=msj;
 var i=document.getElementById("1.-introducción")
 i.parentNode.insertBefore(e,i );
+*/
 </script>
